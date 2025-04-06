@@ -28,6 +28,14 @@ jobs:
             exit 1
           fi
         shell: bash
+    
+      # Mostrar contenido del archivo snyk.sarif para verificar que tiene datos
+      - name: Mostrar contenido de snyk.sarif
+        run: cat snyk.sarif || echo "El archivo snyk.sarif no tiene contenido."
+      
+      # Verificar la versión de Snyk
+      - name: Verificar la versión de Snyk
+        run: snyk --version
         
       - name: Generar reporte HTML desde Snyk
         run: |
