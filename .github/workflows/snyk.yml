@@ -29,8 +29,16 @@ jobs:
           fi
         shell: bash
         
-      - name: Generate HTML report from Snyk
-        run: snyk report --file=snyk.sarif --html > snyk_report.html
+      - name: Generar reporte HTML desde Snyk
+        run: |
+          if [ -f snyk.sarif ]; then
+            echo "Generando reporte HTML..."
+            snyk report --file=snyk.sarif --html > snyk_report.html
+            echo "Reporte generado correctamente."
+          else
+            echo "ERROR: El archivo snyk.sarif no está disponible para generar el reporte."
+            exit 1
+          fi      
   
       - name: Upload HTML Report as artifact
         uses: actions/upload-artifact@v4
