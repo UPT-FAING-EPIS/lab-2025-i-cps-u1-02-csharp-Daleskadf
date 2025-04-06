@@ -42,7 +42,7 @@ jobs:
         run: |
           if [ -f snyk.sarif ]; then
             echo "Generando reporte HTML..."
-            snyk report --file=snyk.sarif --html snyk_report.html
+            snyk report --sarif-file-output=snyk.sarif --html snyk_report.html
             echo "Reporte generado correctamente."
           else
             echo "ERROR: El archivo snyk.sarif no está disponible para generar el reporte."
