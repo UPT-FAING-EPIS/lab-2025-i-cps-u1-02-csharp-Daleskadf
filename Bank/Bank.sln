@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.WebApi", "Bank.WebApi\Bank.WebApi.csproj", "{1E027E69-63D1-4C23-BDF3-BC4F1087B1B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.WebApi.Tests", "Bank.WebApi.Tests\Bank.WebApi.Tests.csproj", "{1EA55FFA-DA01-4263-B00D-BE7793A070DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E027E69-63D1-4C23-BDF3-BC4F1087B1B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E027E69-63D1-4C23-BDF3-BC4F1087B1B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E027E69-63D1-4C23-BDF3-BC4F1087B1B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E027E69-63D1-4C23-BDF3-BC4F1087B1B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EA55FFA-DA01-4263-B00D-BE7793A070DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA55FFA-DA01-4263-B00D-BE7793A070DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA55FFA-DA01-4263-B00D-BE7793A070DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA55FFA-DA01-4263-B00D-BE7793A070DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
