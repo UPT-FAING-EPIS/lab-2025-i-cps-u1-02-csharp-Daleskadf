@@ -22,7 +22,7 @@ jobs:
         run: snyk report --file=snyk.sarif --html > snyk_report.html
   
       - name: Upload HTML Report as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: snyk-report
           path: snyk_report.html
