@@ -17,7 +17,17 @@ jobs:
         run: snyk code test --sarif-file-output=snyk.sarif
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}  
-          
+      
+      # Verificar si el archivo SARIF fue generado
+      - name: Verificar existencia de snyk.sarif
+        run: |
+          if [ -f snyk.sarif ]; then
+            echo "El archivo snyk.sarif existe."
+          else
+            echo "ERROR: El archivo snyk.sarif no se encuentra."
+            exit 1
+        shell: bash
+        
       - name: Generate HTML report from Snyk
         run: snyk report --file=snyk.sarif --html > snyk_report.html
   
