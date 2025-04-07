@@ -31,13 +31,15 @@ jobs:
           /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" \
           /d:sonar.qualitygate.wait=true \
           /d:sonar.exclusions="**/Program.cs,**/code-test-results.html"
-          
+
     - name: Run tests with coverage
       run: dotnet test "Bank/Bank.sln" --collect:"XPlat Code Coverage;Format=opencover"
     - name: Build solution
       run: dotnet build "Bank/Bank.sln" --no-restore --configuration Release
+      
     - name: End SonarCloud analysis
       run: dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
     - name: Pack NuGet package
       run: |
         dotnet pack "Bank/${{ env.NUGET_PROJECT }}/${{ env.NUGET_PROJECT }}.csproj" \
