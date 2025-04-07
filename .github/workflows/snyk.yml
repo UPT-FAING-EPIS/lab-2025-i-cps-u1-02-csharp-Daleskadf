@@ -1,6 +1,6 @@
 name: Snyk Analysis
 env:
-  DOTNET_VERSION: '8.x'                     # la versión de .NET
+  DOTNET_VERSION: '8.x'
 on: push
 jobs:
   security:
@@ -8,52 +8,31 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: snyk/actions/setup@master
-      - name: Configurando la versión de NET
+
+      - name: Setup Snyk CLI
+        uses: snyk/actions/setup@master
+
+      - name: Configurando la versión de .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}  
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Instalar snyk-to-html
+        run: npm install -g snyk-to-html
+
       - name: Snyk monitor
         run: snyk code test --sarif-file-output=snyk.sarif
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}  
-      
-      # Verificar existencia de snyk.sarif
-      - name: Verificar existencia de snyk.sarif
-        run: |
-          if [ -f snyk.sarif ]; then
-            echo "El archivo snyk.sarif existe."
-          else
-            echo "ERROR: El archivo snyk.sarif no se encuentra."
-            exit 1
-          fi
-        shell: bash
-    
-      # Mostrar contenido del archivo snyk.sarif para verificar que tiene datos
-      - name: Mostrar contenido de snyk.sarif
-        run: cat snyk.sarif || echo "El archivo snyk.sarif no tiene contenido."
-      
-      # Verificar la versión de Snyk
-      - name: Verificar la versión de Snyk
-        run: snyk --version
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
-      # Generar reporte HTML desde Snyk
-      - name: Generar reporte HTML desde Snyk
-        run: |
-          if [ -f snyk.sarif ]; then
-            echo "Generando reporte HTML..."
-            snyk report --file=snyk.sarif --html > snyk_report.html
-            echo "Reporte generado correctamente."
-          else
-            echo "ERROR: El archivo snyk.sarif no está disponible para generar el reporte."
-            exit 1
-          fi
-  
-      - name: Upload HTML Report as artifact
+      - name: Generar reporte HTML de Snyk
+        run: snyk code test --json | snyk-to-html -o code-test-results.html
+
+      - name: Upload reporte HTML como artefacto
         uses: actions/upload-artifact@v4
         with:
-          name: snyk-report
-          path: snyk_report.html
+          name: snyk-code-report
+          path: code-test-results.html
 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
