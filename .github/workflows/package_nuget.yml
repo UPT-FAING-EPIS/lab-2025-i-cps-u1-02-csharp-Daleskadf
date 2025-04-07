@@ -1,4 +1,4 @@
-name: Actividad 3 - Package NuGet
+name: Package NuGet
 env:
   DOTNET_VERSION: '8.0' # la versión de .NET
   SONAR_ORG: 'lab2calidad'                    # Nombre de la organización de sonar cloud
@@ -31,6 +31,7 @@ jobs:
           /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" \
           /d:sonar.qualitygate.wait=true \
           /d:sonar.exclusions="**/Program.cs,**/code-test-results.html"
+          
     - name: Run tests with coverage
       run: dotnet test "Bank/Bank.sln" --collect:"XPlat Code Coverage;Format=opencover"
     - name: Build solution
