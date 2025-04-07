@@ -35,7 +35,7 @@ jobs:
       run: dotnet test "Bank/Bank.sln" --collect:"XPlat Code Coverage;Format=opencover"
     - name: Check if coverage report exists
       run: |
-        if [ ! -f "TestResults/**/coverage.opencover.xml" ]; then
+        if [ ! -f "TestResults/*/coverage.opencover.xml" ]; then
           echo "Coverage report not found!";
           exit 1;
         fi    
