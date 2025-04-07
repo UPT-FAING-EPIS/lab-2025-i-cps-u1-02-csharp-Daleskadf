@@ -18,7 +18,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Instalar snyk-to-html
-        run: npm install -g snyk-to-html
+        run: npm install snyk-to-html -g
 
       - name: Snyk monitor
         run: snyk code test --sarif-file-output=snyk.sarif
