@@ -1,4 +1,4 @@
-name: Package NuGet
+name: Package NuGet and Sonar
 env:
   DOTNET_VERSION: '8.0' # la versión de .NET
   SONAR_ORG: 'lab2calidad'                    # Nombre de la organización de sonar cloud
@@ -33,6 +33,13 @@ jobs:
           /d:sonar.exclusions="**/Program.cs,**/code-test-results.html"
     - name: Run tests with coverage
       run: dotnet test "Bank/Bank.sln" --collect:"XPlat Code Coverage;Format=opencover"
+    - name: Check if coverage report exists
+      run: |
+        if [ ! -f "**/coverage.opencover.xml" ]; then
+          echo "Coverage report not found!";
+          exit 1;
+        fi
+        
     - name: Build solution
       run: dotnet build "Bank/Bank.sln" --no-restore --configuration Release
     - name: End SonarCloud analysis
