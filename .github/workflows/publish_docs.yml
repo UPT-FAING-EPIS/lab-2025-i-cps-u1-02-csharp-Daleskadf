@@ -1,35 +1,27 @@
-name: Publish Docs
-on:
-  push:
-    branches:
-      - main
+name: Actividad 2 - Publicar Documentacion Clases con docfx
+
+on: push
 jobs:
-  build-docs:
+  docfx:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.x'
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0
+    - name: Init DocFx
+      run: dotnet tool update -g docfx
 
-      - name: Install DocFx tool
-        run: dotnet tool install -g docfx
+    - name: Generar metadata
+      run: docfx metadata Bank/docfx.json
 
-      - name: Add dotnet tools to PATH
-        run: echo "${HOME}/.dotnet/tools" >> $GITHUB_PATH
+    - name: Build Doc Site
+      run: docfx build Bank/docfx.json
 
-      - name: Generar metadata de DocFx
-        run: docfx metadata Bank/docfx.json
-
-      - name: Build de documentación
-        run: docfx build Bank/docfx.json
-
-      - name: Deploy a GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: Bank/_site
-          publish_branch: gh-pages
+    - name: Subir GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: Bank/_site
