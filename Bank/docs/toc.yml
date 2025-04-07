@@ -1,4 +1,13 @@
-- name: Introduction
-  href: introduction.md
-- name: Getting Started
-  href: getting-started.md
+### YamlMime:TableOfContent
+items:
+- uid: Bank.WebApi.Models
+  name: Bank.WebApi.Models
+  items:
+  - uid: Bank.WebApi.Models.BankAccount
+    name: BankAccount
+- uid: Bank.WebApi.Tests
+  name: Bank.WebApi.Tests
+  items:
+  - uid: Bank.WebApi.Tests.BankAccountTests
+    name: BankAccountTests
+memberLayout: SamePage
