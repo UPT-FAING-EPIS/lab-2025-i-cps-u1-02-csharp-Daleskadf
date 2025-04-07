@@ -1,4 +1,4 @@
-name: Package NuGet
+name: Package NuGet and Sonar
 env:
   DOTNET_VERSION: '8.0' # la versión de .NET
   SONAR_ORG: 'lab2calidad'                    # Nombre de la organización de sonar cloud
