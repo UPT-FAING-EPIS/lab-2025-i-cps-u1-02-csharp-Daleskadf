@@ -1,7 +1,7 @@
 name: Package NuGet
 env:
   DOTNET_VERSION: '8.0' # la versión de .NET
-  SONAR_ORG: 'daleska-lab2-calidad'                    # Nombre de la organización de sonar cloud
+  SONAR_ORG: 'calidad-lab2-daleska'                    # Nombre de la organización de sonar cloud
   SONAR_PROJECT: 'calidad-lab2-daleska_calidad-lab2-daleska'        # Key ID del proyecto de sonar
   NUGET_PROJECT: 'Bank.WebApi'
   NUGET_OUTPUT_DIR: './nupkg'
