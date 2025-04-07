@@ -35,11 +35,11 @@ jobs:
       run: dotnet test "Bank/Bank.sln" --collect:"XPlat Code Coverage;Format=opencover"
     - name: Check if coverage report exists
       run: |
-        if [ ! -f "**/coverage.opencover.xml" ]; then
+        if [ ! -f "TestResults/**/coverage.opencover.xml" ]; then
           echo "Coverage report not found!";
           exit 1;
-        fi
-        
+        fi    
+
     - name: Build solution
       run: dotnet build "Bank/Bank.sln" --no-restore --configuration Release
     - name: End SonarCloud analysis
